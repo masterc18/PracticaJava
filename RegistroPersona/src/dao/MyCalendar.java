@@ -15,10 +15,9 @@ public class MyCalendar {
 
     public MyCalendar() {
     }
-    
 
-    private int evaluateMonth(int mes) {
-        int dias;
+    private int evaluateMonth(int mes, int año) {
+        int dias = 0;
         switch (mes) {
             case 1:
             case 3:
@@ -35,18 +34,26 @@ public class MyCalendar {
             case 11:
                 dias = 30;
                 break;
-            default:
-                dias = 28;
+            case 2:
+                dias = isLape(mes, año);
                 break;
 
         }
         return dias;
     }
 
+    private int isLape(int mes, int año) {
+        if ((año % 4 == 0 && año % 100 != 0) || año % 400 == 0) {
+            return 29;
+        } else {
+            return 28;
+        }
+    
+
     public DefaultComboBoxModel showDay(int mes, int año) {
         DefaultComboBoxModel dia = new DefaultComboBoxModel();
-        int lastDay=this.evaluateMonth(mes);
-        if (mes == LocalDate.now().getMonthValue()&& año ==LocalDate.now().getYear()) {
+        int lastDay = this.evaluateMonth(mes,año);
+        if (mes == LocalDate.now().getMonthValue() && año == LocalDate.now().getYear()) {
             int dd = LocalDate.now().getDayOfMonth();
             for (int d = dd; d >= 1; d--) {
                 dia.addElement(d);
