@@ -48,11 +48,12 @@ public class MyCalendar {
         } else {
             return 28;
         }
-    
+
+    }
 
     public DefaultComboBoxModel showDay(int mes, int año) {
         DefaultComboBoxModel dia = new DefaultComboBoxModel();
-        int lastDay = this.evaluateMonth(mes,año);
+        int lastDay = this.evaluateMonth(mes, año);
         if (mes == LocalDate.now().getMonthValue() && año == LocalDate.now().getYear()) {
             int dd = LocalDate.now().getDayOfMonth();
             for (int d = dd; d >= 1; d--) {
